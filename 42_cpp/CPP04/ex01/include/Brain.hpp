@@ -1,34 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.hpp                                         :+:      :+:    :+:   */
+/*   Brain.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pollivie <pollivie.student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/22 15:22:11 by pollivie          #+#    #+#             */
-/*   Updated: 2024/08/22 15:24:34 by pollivie         ###   ########.fr       */
+/*   Created: 2024/08/25 14:43:25 by pollivie          #+#    #+#             */
+/*   Updated: 2024/08/25 14:43:25 by pollivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ANIMAL_HPP
-#define ANIMAL_HPP
+#ifndef BRAIN_HPP
+#define BRAIN_HPP
 
 #include <iostream>
 #include <string>
 
-class Animal {
-      protected:
-	std::string _type;
+#define IDEAS_MAX 100
+
+class Brain {
+      private:
+	std::string _ideas[IDEAS_MAX];
 
       public:
-	Animal();
-	Animal(Animal const &other);
-	Animal(std::string type);
-	Animal      &operator=(Animal const &other);
-	virtual void makeSound() const;
-	std::string  getType() const;
-
-	virtual ~Animal();
+	Brain();
+	Brain(Brain const &other);
+	Brain             &operator=(Brain const &other);
+	std::string const &getIdea(int index) const;
+	~Brain();
 };
 
-#endif // ANIMAL_HPP
+#endif // BRAIN_HPP

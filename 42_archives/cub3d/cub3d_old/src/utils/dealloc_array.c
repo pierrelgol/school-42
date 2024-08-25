@@ -1,34 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.hpp                                         :+:      :+:    :+:   */
+/*   dealloc_array.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pollivie <pollivie.student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/22 15:22:11 by pollivie          #+#    #+#             */
-/*   Updated: 2024/08/22 15:24:34 by pollivie         ###   ########.fr       */
+/*   Created: 2024/07/23 16:31:17 by pollivie          #+#    #+#             */
+/*   Updated: 2024/07/23 16:31:17 by pollivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ANIMAL_HPP
-#define ANIMAL_HPP
+#include "cub3d.h"
 
-#include <iostream>
-#include <string>
+void	dealloc_array(char **array)
+{
+	int32_t	i;
 
-class Animal {
-      protected:
-	std::string _type;
-
-      public:
-	Animal();
-	Animal(Animal const &other);
-	Animal(std::string type);
-	Animal      &operator=(Animal const &other);
-	virtual void makeSound() const;
-	std::string  getType() const;
-
-	virtual ~Animal();
-};
-
-#endif // ANIMAL_HPP
+	i = 0;
+	if (!array)
+		return;
+	i = 0;
+	while (array[i])
+		dealloc(array[i++]);
+	dealloc(array);
+}

@@ -1,34 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.hpp                                         :+:      :+:    :+:   */
+/*   cub3d_ray.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pollivie <pollivie.student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/22 15:22:11 by pollivie          #+#    #+#             */
-/*   Updated: 2024/08/22 15:24:34 by pollivie         ###   ########.fr       */
+/*   Created: 2024/07/24 19:16:48 by pollivie          #+#    #+#             */
+/*   Updated: 2024/07/24 19:16:49 by pollivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ANIMAL_HPP
-#define ANIMAL_HPP
+#include "cub3d.h"
 
-#include <iostream>
-#include <string>
+t_ray *ray_init(t_player *const player, t_map *const map)
+{
+	t_ray *self;
 
-class Animal {
-      protected:
-	std::string _type;
+	if (!player || !map)
+		return (NULL);
+	self = alloc(sizeof(t_ray));
+	if (!self)
+		return (NULL);
+	self->map = map;
+	self->player = player;
+	return (self);
+}
 
-      public:
-	Animal();
-	Animal(Animal const &other);
-	Animal(std::string type);
-	Animal      &operator=(Animal const &other);
-	virtual void makeSound() const;
-	std::string  getType() const;
 
-	virtual ~Animal();
-};
-
-#endif // ANIMAL_HPP
+t_ray *ray_deinit(t_ray *const self)
+{
+	if (!self)
+		return (NULL);
+	dealloc(self);
+	return (NULL);
+}

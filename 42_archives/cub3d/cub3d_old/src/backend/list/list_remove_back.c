@@ -1,34 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.hpp                                         :+:      :+:    :+:   */
+/*   list_remove_back.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pollivie <pollivie.student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/22 15:22:11 by pollivie          #+#    #+#             */
-/*   Updated: 2024/08/22 15:24:34 by pollivie         ###   ########.fr       */
+/*   Created: 2024/07/04 10:59:14 by pollivie          #+#    #+#             */
+/*   Updated: 2024/07/04 10:59:27 by pollivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ANIMAL_HPP
-#define ANIMAL_HPP
+#include "slib.h"
 
-#include <iostream>
-#include <string>
+t_node	*list_remove_back(t_list * list)
+{
+	t_node	*node;
 
-class Animal {
-      protected:
-	std::string _type;
-
-      public:
-	Animal();
-	Animal(Animal const &other);
-	Animal(std::string type);
-	Animal      &operator=(Animal const &other);
-	virtual void makeSound() const;
-	std::string  getType() const;
-
-	virtual ~Animal();
-};
-
-#endif // ANIMAL_HPP
+	if (list_is_empty(list))
+		return (NULL);
+	node = list->tail;
+	if (list->size == 1)
+	{
+		list->head = NULL;
+		list->tail = NULL;
+	}
+	else
+	{
+		list->tail = node->prev;
+		list->tail->next = NULL;
+	}
+	node->next = NULL;
+	node->prev = NULL;
+	list->size -= 1;
+	return (node);
+}

@@ -1,34 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.hpp                                         :+:      :+:    :+:   */
+/*   list_insert_at.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pollivie <pollivie.student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/22 15:22:11 by pollivie          #+#    #+#             */
-/*   Updated: 2024/08/22 15:24:34 by pollivie         ###   ########.fr       */
+/*   Created: 2024/07/04 10:58:59 by pollivie          #+#    #+#             */
+/*   Updated: 2024/07/04 10:58:59 by pollivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ANIMAL_HPP
-#define ANIMAL_HPP
+#include "slib.h"
 
-#include <iostream>
-#include <string>
+void	list_insert_at(t_list * self, t_node * node,
+		 uint64_t index)
+{
+	t_node	*temp;
 
-class Animal {
-      protected:
-	std::string _type;
-
-      public:
-	Animal();
-	Animal(Animal const &other);
-	Animal(std::string type);
-	Animal      &operator=(Animal const &other);
-	virtual void makeSound() const;
-	std::string  getType() const;
-
-	virtual ~Animal();
-};
-
-#endif // ANIMAL_HPP
+	if (index == 0 || list_is_empty(self))
+		list_insert_front(self, node);
+	else if (index >= self->size)
+		list_insert_back(self, node);
+	else
+	{
+		temp = node_get_nchild(self->head, index - 1);
+		node_insert_child(temp, node);
+		self->size += 1;
+	}
+}

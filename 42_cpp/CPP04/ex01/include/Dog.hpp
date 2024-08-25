@@ -1,34 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.hpp                                         :+:      :+:    :+:   */
+/*   Dog.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pollivie <pollivie.student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/22 15:22:11 by pollivie          #+#    #+#             */
-/*   Updated: 2024/08/22 15:24:34 by pollivie         ###   ########.fr       */
+/*   Created: 2024/08/25 13:35:19 by pollivie          #+#    #+#             */
+/*   Updated: 2024/08/25 13:35:20 by pollivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ANIMAL_HPP
-#define ANIMAL_HPP
+#ifndef DOG_HPP
+#define DOG_HPP
 
+#include "Animal.hpp"
+#include "Brain.hpp"
 #include <iostream>
 #include <string>
 
-class Animal {
-      protected:
-	std::string _type;
+class Dog : public Animal {
+      private:
+	Brain *_brain;
 
       public:
-	Animal();
-	Animal(Animal const &other);
-	Animal(std::string type);
-	Animal      &operator=(Animal const &other);
-	virtual void makeSound() const;
-	std::string  getType() const;
-
-	virtual ~Animal();
+	Dog();
+	Dog(std::string type);
+	Dog(Dog const &other);
+	Dog   &operator=(Dog const &other);
+	void   makeSound() const;
+	Brain *getBrain() const;
+	~Dog();
 };
 
-#endif // ANIMAL_HPP
+#endif // DOG_HPP

@@ -1,34 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.hpp                                         :+:      :+:    :+:   */
+/*   string_clone.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pollivie <pollivie.student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/22 15:22:11 by pollivie          #+#    #+#             */
-/*   Updated: 2024/08/22 15:24:34 by pollivie         ###   ########.fr       */
+/*   Created: 2024/05/11 13:29:04 by pollivie          #+#    #+#             */
+/*   Updated: 2024/05/11 13:29:04 by pollivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ANIMAL_HPP
-#define ANIMAL_HPP
+#include "slib.h"
 
-#include <iostream>
-#include <string>
+char	*string_clone(char *src)
+{
+	if (!src)
+		return (NULL);
+	return (dupz((void *)src, string_length(src)));
+}
 
-class Animal {
-      protected:
-	std::string _type;
+char	*string_clone_scalar(int32_t ch)
+{
+	char	*result;
 
-      public:
-	Animal();
-	Animal(Animal const &other);
-	Animal(std::string type);
-	Animal      &operator=(Animal const &other);
-	virtual void makeSound() const;
-	std::string  getType() const;
+	result = alloc(2);
+	result[0] = (uint8_t)ch;
+	result[1] = 0x00;
+	return (result);
+}
 
-	virtual ~Animal();
-};
-
-#endif // ANIMAL_HPP
+char	*string_nclone(char *src, uint64_t n)
+{
+	if (!src)
+		return (NULL);
+	return (dupz((void *)src, string_length(src) - n));
+}

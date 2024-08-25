@@ -1,34 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.hpp                                         :+:      :+:    :+:   */
+/*   list_copy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pollivie <pollivie.student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/22 15:22:11 by pollivie          #+#    #+#             */
-/*   Updated: 2024/08/22 15:24:34 by pollivie         ###   ########.fr       */
+/*   Created: 2024/07/06 19:40:05 by pollivie          #+#    #+#             */
+/*   Updated: 2024/07/06 19:40:06 by pollivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ANIMAL_HPP
-#define ANIMAL_HPP
+#include "slib.h"
 
-#include <iostream>
-#include <string>
+void	list_copy(t_list * dest, t_list * src,
+		uintptr_t (*ctor)(uintptr_t data))
+{
+	t_node	*copied;
+	t_node	*head;
 
-class Animal {
-      protected:
-	std::string _type;
-
-      public:
-	Animal();
-	Animal(Animal const &other);
-	Animal(std::string type);
-	Animal      &operator=(Animal const &other);
-	virtual void makeSound() const;
-	std::string  getType() const;
-
-	virtual ~Animal();
-};
-
-#endif // ANIMAL_HPP
+	if (!dest || !src || list_is_empty(src))
+		return ;
+	head = src->head;
+	while (head)
+	{
+		copied = node_create(ctor(head->data));
+		list_insert_back(dest, copied);
+		head = head->next;
+	}
+}

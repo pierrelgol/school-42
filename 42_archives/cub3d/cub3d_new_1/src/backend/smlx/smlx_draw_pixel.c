@@ -1,34 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.hpp                                         :+:      :+:    :+:   */
+/*   smlx_draw_pixel.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pollivie <pollivie.student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/22 15:22:11 by pollivie          #+#    #+#             */
-/*   Updated: 2024/08/22 15:24:34 by pollivie         ###   ########.fr       */
+/*   Created: 2024/07/22 14:57:40 by pollivie          #+#    #+#             */
+/*   Updated: 2024/07/22 14:57:40 by pollivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ANIMAL_HPP
-#define ANIMAL_HPP
+#include "smlx.h"
 
-#include <iostream>
-#include <string>
+void	smlx_draw_pixel(t_smlx_instance *self, t_vec2i pos, uint32_t color)
+{
+	uint32_t	*ptr;
 
-class Animal {
-      protected:
-	std::string _type;
-
-      public:
-	Animal();
-	Animal(Animal const &other);
-	Animal(std::string type);
-	Animal      &operator=(Animal const &other);
-	virtual void makeSound() const;
-	std::string  getType() const;
-
-	virtual ~Animal();
-};
-
-#endif // ANIMAL_HPP
+	if (pos.x >= 0 && pos.x < self->width && pos.y >= 0
+		&& pos.y < self->height)
+	{
+		ptr = (uint32_t *)(self->data + (pos.y * self->size) + (pos.x
+					* (self->bpp / 8)));
+		*ptr = color;
+	}
+}

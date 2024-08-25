@@ -1,34 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.hpp                                         :+:      :+:    :+:   */
+/*   smlx_draw_clear.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pollivie <pollivie.student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/22 15:22:11 by pollivie          #+#    #+#             */
-/*   Updated: 2024/08/22 15:24:34 by pollivie         ###   ########.fr       */
+/*   Created: 2024/07/22 15:00:05 by pollivie          #+#    #+#             */
+/*   Updated: 2024/07/22 15:00:05 by pollivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ANIMAL_HPP
-#define ANIMAL_HPP
+#include "smlx.h"
 
-#include <iostream>
-#include <string>
+void	smlx_draw_clear(t_smlx_instance *self, uint32_t color)
+{
+	int32_t	y;
+	int32_t	x;
 
-class Animal {
-      protected:
-	std::string _type;
-
-      public:
-	Animal();
-	Animal(Animal const &other);
-	Animal(std::string type);
-	Animal      &operator=(Animal const &other);
-	virtual void makeSound() const;
-	std::string  getType() const;
-
-	virtual ~Animal();
-};
-
-#endif // ANIMAL_HPP
+	y = 0;
+	while (y < self->height)
+	{
+		x = 0;
+		while (x < self->width)
+		{
+			smlx_draw_pixel(self, (t_vec2i){.x = x, .y = y}, color);
+			++x;
+		}
+		++y;
+	}
+}

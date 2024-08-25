@@ -1,34 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.hpp                                         :+:      :+:    :+:   */
+/*   alloc.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pollivie <pollivie.student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/22 15:22:11 by pollivie          #+#    #+#             */
-/*   Updated: 2024/08/22 15:24:34 by pollivie         ###   ########.fr       */
+/*   Created: 2024/07/21 14:32:06 by pollivie          #+#    #+#             */
+/*   Updated: 2024/07/21 14:32:07 by pollivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ANIMAL_HPP
-#define ANIMAL_HPP
+#include "slib.h"
 
-#include <iostream>
-#include <string>
+#ifdef DEBUG
 
-class Animal {
-      protected:
-	std::string _type;
+void	*alloc(uint64_t byte_size)
+{
+	void	*ptr;
 
-      public:
-	Animal();
-	Animal(Animal const &other);
-	Animal(std::string type);
-	Animal      &operator=(Animal const &other);
-	virtual void makeSound() const;
-	std::string  getType() const;
+	ptr = malloc(byte_size);
+	if (!ptr)
+		return (NULL);
+	zeroed(ptr, byte_size);
+	return (ptr);
+}
 
-	virtual ~Animal();
-};
+#else
 
-#endif // ANIMAL_HPP
+void	*alloc(uint64_t byte_size)
+{
+	return (malloc(byte_size));
+}
+
+#endif

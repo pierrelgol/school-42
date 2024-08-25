@@ -1,34 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.hpp                                         :+:      :+:    :+:   */
+/*   Cat.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pollivie <pollivie.student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/22 15:22:11 by pollivie          #+#    #+#             */
-/*   Updated: 2024/08/22 15:24:34 by pollivie         ###   ########.fr       */
+/*   Created: 2024/08/25 13:46:44 by pollivie          #+#    #+#             */
+/*   Updated: 2024/08/25 13:46:44 by pollivie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ANIMAL_HPP
-#define ANIMAL_HPP
+#ifndef CAT_HPP
+#define CAT_HPP
 
+#include "Animal.hpp"
+#include "Brain.hpp"
 #include <iostream>
 #include <string>
 
-class Animal {
-      protected:
-	std::string _type;
+class Cat : public Animal {
+      private:
+	Brain *_brain;
 
       public:
-	Animal();
-	Animal(Animal const &other);
-	Animal(std::string type);
-	Animal      &operator=(Animal const &other);
-	virtual void makeSound() const;
-	std::string  getType() const;
-
-	virtual ~Animal();
+	Cat();
+	Cat(std::string type);
+	Cat(Cat const &other);
+	Cat   &operator=(Cat const &other);
+	void   makeSound() const;
+	Brain *getBrain() const;
+	~Cat();
 };
 
-#endif // ANIMAL_HPP
+#endif // CAT_HPP
