@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DELETE Method</title>
+</head>
+<body>
+    <h1>DELETE Method</h1>
+    <p>This page demonstrates the DELETE HTTP method.</p>
+
+    <!-- Form to trigger DELETE request -->
+    <form action="./post/user.txt" method="POST" onsubmit="return handleDelete(event);">
+        <button type="submit">Delete User File</button>
+    </form>
+
+    <script>
+        function handleDelete(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            fetch('./post/user.txt', {
+                method: 'DELETE'
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert('File deleted successfully!');
+                } else {
+                    alert('Failed to delete the file.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred while deleting the file.');
+            });
+
+            return false;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CGI Scripts</title>
+</head>
+<body>
+    <h1>CGI Scripts</h1>
+
+    <h2>Calculator CGI</h2>
+    <form action="/cgi-bin/calculator" method="POST">
+        <label for="expression">Enter Expression (e.g., 5 + 1):</label><br>
+        <input type="text" id="expression" name="expression" required><br>
+        <button type="submit">Calculate</button>
+    </form>
+
+    <h2>Current Date CGI</h2>
+    <form action="/cgi-bin/current_date" method="GET">
+        <button type="submit">Get Current Date</button>
+    </form>
+
+    <h2>Test CGI Script</h2>
+    <form action="/cgi-bin/test" method="POST">
+        <label for="data">Enter Data to Test:</label><br>
+        <input type="text" id="data" name="data"><br>
+        <button type="submit">Send</button>
+    </form>
+
+    <form action="/cgi-bin/test" method="GET">
+        <button type="submit">Test GET</button>
+    </form>
+</body>
+</html>
